@@ -1,0 +1,71 @@
+import java.util.Scanner;
+import java.util.*;  
+
+
+
+public class Main
+{
+    
+    public static void wait(int ms)
+{
+    try
+    {
+        Thread.sleep(ms);
+    }
+    catch(InterruptedException ex)
+    {
+        Thread.currentThread().interrupt();
+    }
+}
+
+
+	public static void main(String[] args) {
+	  
+	    Scanner reader = new Scanner(System.in); 
+	    Scanner sc= new Scanner(System.in);
+	    
+	   
+	    System.out.println("Hello! Welcome to the Cylinder Volume calculator!");
+	   wait(3000);
+	    System.out.println("We are going to be calculating the volume of a Cylinder for you. But just for professionalism, what is your name?");
+	   wait(3000);
+	    String name= sc.nextLine();             
+       
+        System.out.print("Why hello there, "+name+ "! " );
+	wait(3000);
+		System.out.println("Please enter the diameter of your circle:");
+		
+		Double diameter = reader.nextDouble(); 
+		Double radius = diameter / 2;
+		
+		
+        
+        System.out.println(diameter +"?");
+        
+        wait(3000);
+        System.out.println("That would mean that your radius is "+radius);
+        
+        Double area = (Math.PI * radius *radius);
+       
+        wait(3000);
+        System.out.println("Since area is PI x R^2, your area is "+area);
+        wait(8000);
+        System.out.println("Now that we have have the area of your circle, we just need to find the Volume of the cylinder!");
+        wait(8000);
+        System.out.println("Please enter the height:");
+        
+        Double height = reader.nextDouble();
+        
+        Double volume = area*height;
+        
+        reader.close();
+        
+        System.out.println("Now, the volume of a cylinder is equal to the Area of the circle times the height.");
+        wait(8000);
+        System.out.println("Since your height is "+height+", this means that your volume is "+volume + " cubic whatever unit you're using");
+        wait(8000);
+        System.out.println("Thanks for using me!");
+        wait(3000);
+        
+	}
+}
