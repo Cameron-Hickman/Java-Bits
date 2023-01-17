@@ -1,0 +1,108 @@
+//Cameron Hickman
+
+import java.util.Random;
+import java.util.*;
+public class NumberGuessingGame {
+
+	public static void main(String[] args) {
+		int playing = 1;
+while(playing >= 1) {
+		Random rand = new Random();
+		int wins = 0;
+		int losses = 0;
+		
+		int randomNumber = rand.nextInt(100) + 1;
+		Scanner scanner = new Scanner(System.in);
+		int guesses = 5;
+		int tries = 0;
+		
+	
+		
+	
+		System.out.println("Welcome to the number guessing game!\nA number will be chose at random and you will have 5 guesses to figure it out.");
+		
+		
+
+	while(tries <=3) {
+		
+		
+			System.out.println("Enter your guess (1-100):\n" );
+			
+			
+		int playerGuess = scanner.nextInt();
+		
+		if(playerGuess == randomNumber) {
+			System.out.println("\nCorrect! You Win\n");
+			wins++;
+			break;
+		
+		}
+		else if(randomNumber > playerGuess) {
+			System.out.println("\nNope! The number is higher.");
+			tries = tries + 1;
+			guesses = guesses - 1;
+			System.out.println("You have " + guesses + " guesses left.\n");
+		}
+		else if(randomNumber < playerGuess) {
+			System.out.println("\nNope! The number is lower.");
+			tries = tries + 1;
+			guesses = guesses - 1;
+			System.out.println("You have " + guesses + " guesses left.\n");
+		}
+	}
+		
+		
+		
+		
+		
+		while(guesses == 1 ) {
+			
+			System.out.println("Enter your guess (1-100):");
+			
+			int playerGuess = scanner.nextInt();
+			
+			if(playerGuess == randomNumber) {
+				
+				System.out.println("\nCorrect! You Win");
+				wins = wins + 1;
+				
+				break;
+				
+			}
+			else if(randomNumber > playerGuess) {
+				
+				System.out.println("\nSorry! The correct number was " + randomNumber + ".\n");
+				losses = losses + 1;
+				break;
+			}
+			else if(randomNumber < playerGuess) {
+				
+				System.out.println("\nSorry! The correct number was " + randomNumber + ".\n");
+				losses = losses + 1;
+				break;
+			}
+						
+		
+	}
+		
+		System.out.println("So far you have " + wins + " wins and " + losses + " losses. \nWould you like to play again? Type 1 for yes and 2 for no.");
+		int playAgain = scanner.nextInt();
+		
+		if(playAgain == 1) {
+			playing++;
+			
+			
+		}
+		
+		else if(playAgain == 2) {
+			System.out.println("Thank you for playing!");
+			playing = 0;
+			
+			scanner.close();
+		}
+	  }
+	}
+	
+
+	
+}
