@@ -1,0 +1,39 @@
+ 
+public class SimpleSort {
+	static final int ARRAY_SIZE = 10;
+    static final int NUMBER_MAX = 1000;
+    static int numbers[] = new int[ARRAY_SIZE];
+
+    private static void selectionSort(int[] numbers) {
+        for (int i = 0; i < numbers.length - 1; i++) {
+            // Find index of smallest remaining element
+            int indexSmallest = i;
+            for (int j = i + 1; j < numbers.length; j++) {
+                if (numbers[j] < numbers[indexSmallest]) {
+                    indexSmallest = j;
+                }
+            }
+
+            // Swap numbers[i] and numbers[indexSmallest]
+            int temp = numbers[i];
+            numbers[i] = numbers[indexSmallest];
+            numbers[indexSmallest] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Load the array with random integers
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            numbers[i] = (int) (Math.random() * NUMBER_MAX);
+        }
+
+        // Call the selectionSort method
+        selectionSort(numbers);
+
+        // Print out the sorted results
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            System.out.println(numbers[i]);
+        }
+    }
+}
+
