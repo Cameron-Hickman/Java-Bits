@@ -1,0 +1,120 @@
+
+
+
+import java.util.*;
+import java.io.*;
+
+
+public class CodeChecker{
+
+	
+	 // Helper method to get the matching bracket
+    private static char getMatchingBracket(char bracket) {
+        switch (bracket) {
+            case ')':
+                return '(';
+            case '}':
+                return '{';
+            case ']':
+                return '[';
+            default:
+                return '\0'; // Invalid bracket
+        }
+    }
+	
+	public static void main(String[] args) {
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(args[0]));
+			
+			StringBuilder stringBuilder = new StringBuilder();
+			String line = null;
+			String ls = System.getProperty(" ");
+			
+			while ((line = br.readLine()) != null) {
+				stringBuilder.append(line);
+				stringBuilder.append(ls);
+			}
+			
+			
+			
+			Stack<Character> bracketStack = new Stack<>();
+			String str = removeComments(stringBuilder.toString());
+			
+		      	boolean notBalanced = false;
+		      	
+		    
+				
+		      	//for loop to iterate through  string
+				for(int i = 0; i < str.length(); i++){
+				
+			        	   
+			        char bracket = str.charAt(i);   
+					
+					//switch for different cases of ending bracket
+			        switch (bracket) {
+			        case ')':
+			        case '}':
+			        case ']':
+			            if (!bracketStack.isEmpty()) {
+			                char top = bracketStack.pop();
+			                if ((bracket == ')' && top != '(') ||
+			                    (bracket == '}' && top != '{') ||
+			                    (bracket == ']' && top != '[')) {
+			                    System.out.printf("Not balanced: Expected " + getMatchingBracket(top) + ", found " + bracket + " on line %d.%n", countLines(str.substring(0, i)) + 1);
+			                    notBalanced = true;
+			                }
+			            } else {
+			                System.out.printf("Not balanced: Stack is empty, found " + bracket + " on line %d.%n", countLines(str.substring(0, i)) + 1);
+			                notBalanced = true;
+			            }
+			            break;
+			        default:
+			            if (bracket == '(' || bracket == '{' || bracket == '[') {
+			                bracketStack.push(bracket);
+			            }
+			    }
+
+			    if (notBalanced) {
+			        break;
+			    }
+
+				
+				}
+				
+				if(bracketStack.isEmpty() && notBalanced == false) {
+					System.out.println("Balanced.");
+					
+				} 
+				else if(!(bracketStack.isEmpty()) && notBalanced == false) {
+					System.out.println("Not balanced: Stack is not empty at end.");
+					
+				}
+			
+			
+			
+			br.close();
+			
+			
+		} // END try
+		
+		catch (Exception e) {
+			// All Exceptions come here for graceful termination
+			System.out.println("Error: " + e);
+		} // END catch
+		
+	}
+	  private static int countLines(String str) {
+	        String[] lines = str.split("\r\n|\r|\n");
+	        return lines.length;
+	    }
+	  private static String removeComments(String code) {
+	        // This simple regex removes both /*...*/ and //... style comments
+	        return code.replaceAll("/\\*.*?\\*/|//.*?$", "");
+	    }
+	
+		
+	
+}
+
